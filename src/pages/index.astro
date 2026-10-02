@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Faixa from '../components/Faixa.astro';
+import CartaoProduto from '../components/CartaoProduto.astro';
+import { img } from '../lib/imagens.js';
+import { produtos, CATEGORIAS, porCategoria, comSelo } from '../lib/catalogo.js';
+
+const capas = { adesivos: 'mock_a0', camisetas: 'mock_t1', decorativos: 'mock_d0' };
+const novos = comSelo('novo');
+const dois = (n) => String(n).padStart(2, '0');
+---
+<Base>
+  <Hero />
+  <Faixa />
+
+  <nav class="cats" aria-label="Categorias">
+    {Object.entries(CATEGORIAS).map(([slug, c]) => {
+      const foto = img(capas[slug], { mini: true });
+      return (
+        <a class="cat revela" href={`/${slug}/`}>
+          <span class="cat-anel"><img src={foto.src} width={foto.width} height={foto.height} alt="" /></span>
+          <span class="cat-nome">{c.titulo}</span>
+        </a>
+      );
+    })}
+  </nav>
+
+  <div class="miolo">
+    <section class="secao" aria-labelledby="novidades">
+      <div class="cabeca revela">
+        <h2 id="novidades">Novidades</h2>
+        <span class="cabeca-contagem">{dois(novos.length)}/{dois(produtos.length)}</span>
+      </div>
+      <div class="trilho">
+        {novos.map((p) => <CartaoProduto produto={p} />)}
+      </div>
+    </section>
+
+    {Object.entries(CATEGORIAS).map(([slug, c]) => (
+      <section class="secao" style="padding-top:0" aria-labelledby={`sec-${slug}`}>
+        <div class="cabeca revela">
+          <h2 id={`sec-${slug}`}>{c.titulo}</h2>
+          <a class="cabeca-mais" href={`/${slug}/`}>Ver todos</a>
+        </div>
+        <div class="grade">
+          {porCategoria(slug).map((p) => <CartaoProduto produto={p} />)}
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>

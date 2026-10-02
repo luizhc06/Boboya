@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import Topo from '../components/Topo.astro';
+import Rodape from '../components/Rodape.astro';
+import Gaveta from '../components/Gaveta.astro';
+import Aviso from '../components/Aviso.astro';
+import { config } from '../config.js';
+import { produtos } from '../lib/catalogo.js';
+import { img } from '../lib/imagens.js';
+
+const {
+  titulo = config.nome,
+  descricao = 'Adesivos de carro, camisetas e decorativos de anime e cultura geek. Merch Y2K da BOBOYA garage.',
+} = Astro.props;
+
+// O navegador precisa do catalogo pra montar o carrinho (nome, tipo, preco, foto).
+// So vai o que a gaveta usa, e o preco vem daqui: nunca do localStorage.
+const catalogoCliente = produtos.map((p) => ({
+  slug: p.slug,
+  nome: p.nome,
+  tipo: p.tipo,
+  preco: p.preco,
+  tamanhos: p.tamanhos,
+  imagem: img(p.imagens[0], { mini: true }).src,
+}));
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descricao} />
+    <meta name="theme-color" content="#161616" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    {/* Liga a revelacao ao rolar so quando ha movimento permitido, e antes da
+        primeira pintura (pra nada piscar). Se o script de animacoes nao chegar a
+        avisar que carregou, tudo e mostrado em 4s: conteudo nunca fica preso
+        invisivel. */}
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js');
+        setTimeout(function () {
+          if (!window.__revelaOk) document.querySelectorAll('.revela').forEach(function (e) { e.classList.add('visivel'); });
+        }, 4000);
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Ir para o conteúdo</a>
+    <Topo />
+    <main id="conteudo"><slot /></main>
+    <Rodape />
+    <Gaveta />
+    <Aviso />
+    <script id="catalogo" type="application/json" set:html={JSON.stringify(catalogoCliente)} />
+    <script>
+      import '../scripts/relogio.js';
+      import '../scripts/animacoes.js';
+      import '../scripts/carrinho-ui.js';
+    </script>
+  </body>
+</html>

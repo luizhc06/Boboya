@@ -1,0 +1,37 @@
+---
+import { img } from '../lib/imagens.js';
+import { CATEGORIAS } from '../lib/catalogo.js';
+import { config } from '../config.js';
+
+const logo = img('logo');
+---
+<footer class="rodape">
+  <div class="rodape-grade">
+    <div>
+      <img src={logo.src} width={logo.width} height={logo.height} alt="BOBOYA garage" loading="lazy" />
+      <p class="estrelas" aria-hidden="true">☆☆☆☆☆☆☆</p>
+    </div>
+    <div>
+      <h2>Produtos</h2>
+      <ul>
+        {Object.entries(CATEGORIAS).map(([slug, c]) => <li><a href={`/${slug}/`}>{c.titulo}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2>Contato</h2>
+      <ul>
+        <li>
+          {config.instagram
+            ? <a href={config.instagram} target="_blank" rel="noopener">Instagram</a>
+            : <button type="button" data-em-dev>Instagram</button>}
+        </li>
+        <li>
+          {config.whatsapp
+            ? <a href={`https://wa.me/${config.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener">WhatsApp</a>
+            : <button type="button" data-em-dev>WhatsApp</button>}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <p class="rodape-base">© 2026 BOBOYA garage</p>
+</footer>

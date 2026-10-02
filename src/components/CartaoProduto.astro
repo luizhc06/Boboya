@@ -1,0 +1,23 @@
+---
+import { img } from '../lib/imagens.js';
+import { formatarPreco } from '../lib/preco.js';
+
+const { produto, prioridade = false } = Astro.props;
+const foto = img(produto.imagens[0], { mini: true });
+---
+<a class="cartao revela" href={`/produto/${produto.slug}/`}>
+  <div class="cartao-foto">
+    <img
+      src={foto.src} width={foto.width} height={foto.height}
+      alt={`${produto.nome}, ${produto.tipo}`}
+      loading={prioridade ? 'eager' : 'lazy'} decoding="async"
+    />
+  </div>
+  <div class="cartao-info">
+    {produto.selo && <span class={`selo selo-${produto.selo}`}>{produto.selo}</span>}
+    <p class="cartao-etiqueta">{produto.tipo}</p>
+    <h3 class="cartao-nome">{produto.nome}</h3>
+    {produto.edicao && <p class="cartao-edicao">EDIÇÃO DE {produto.edicao}</p>}
+    <p class="cartao-preco">{formatarPreco(produto.preco)}</p>
+  </div>
+</a>

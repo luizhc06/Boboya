@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import { produtos, CATEGORIAS } from '../../lib/catalogo.js';
+import { img } from '../../lib/imagens.js';
+import { formatarPreco } from '../../lib/preco.js';
+
+export function getStaticPaths() {
+  return produtos.map((produto) => ({ params: { slug: produto.slug }, props: { produto } }));
+}
+
+const { produto } = Astro.props;
+const foto = img(produto.imagens[0]);
+const categoria = CATEGORIAS[produto.categoria];
+const specs = produto.specs ? Object.entries(produto.specs) : [];
+---
+<Base titulo={`${produto.nome}, ${produto.tipo} | BOBOYA garage`} descricao={`${produto.nome}, ${produto.tipo}, por ${formatarPreco(produto.preco)}.`}>
+  <div class="miolo produto">
+    <div class="produto-foto revela">
+      <img src={foto.src} width={foto.width} height={foto.height} alt={`${produto.nome}, ${produto.tipo}`} />
+    </div>
+    <div class="revela" style="--atraso:90ms">
+      <p class="produto-trilha"><a href="/">Início</a> / <a href={`/${produto.categoria}/`}>{categoria.titulo}</a></p>
+      {produto.selo && <span class={`selo selo-${produto.selo}`}>{produto.selo}</span>}
+      <p class="produto-tipo">{produto.tipo}</p>
+      <h1>{produto.nome}</h1>
+      {produto.edicao && <p class="cartao-edicao">EDIÇÃO DE {produto.edicao}</p>}
+      <p class="produto-preco">{formatarPreco(produto.preco)}</p>
+
+      <form class="compra" data-form-produto data-slug={produto.slug} novalidate>
+        {produto.tamanhos.length > 0 && (
+          <fieldset class="tamanhos">
+            <legend>Tamanho</legend>
+            {produto.tamanhos.map((t) => (
+              <label class="tamanho"><input type="radio" name="tamanho" value={t} /><span>{t}</span></label>
+            ))}
+          </fieldset>
+        )}
+        <label class="qtd">Quantidade
+          <input type="number" name="qtd" value="1" min="1" max="99" inputmode="numeric" />
+        </label>
+        <p class="erro" data-erro role="alert"></p>
+        <button class="botao" type="submit">Adicionar ao carrinho</button>
+      </form>
+
+      {specs.length > 0 && (
+        <dl class="specs">
+          {specs.map(([nome, valor]) => (<><dt>{nome}</dt><dd>{valor}</dd></>))}
+        </dl>
+      )}
+    </div>
+  </div>
+</Base>

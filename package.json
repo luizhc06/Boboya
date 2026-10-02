@@ -1,0 +1,21 @@
+{
+  "name": "boboya",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/sem-travessao.mjs && astro build",
+    "preview": "astro preview",
+    "assets": "node scripts/assets.mjs",
+    "texto": "node scripts/sem-travessao.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "astro": "^7.3.2"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5",
+    "vitest": "^5.0.3"
+  }
+}

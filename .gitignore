@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.env
+.DS_Store
+
+# os originais pesam ~37 MB e o repo e publico: so o WebP gerado sobe
+imagens-originais/

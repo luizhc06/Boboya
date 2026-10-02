@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import CartaoProduto from '../components/CartaoProduto.astro';
+import { CATEGORIAS, porCategoria } from '../lib/catalogo.js';
+
+export function getStaticPaths() {
+  return Object.keys(CATEGORIAS).map((categoria) => ({ params: { categoria } }));
+}
+
+const { categoria } = Astro.params;
+const info = CATEGORIAS[categoria];
+const itens = porCategoria(categoria);
+---
+<Base titulo={`${info.titulo} | BOBOYA garage`} descricao={info.legenda}>
+  <div class="miolo secao">
+    <div class="cabeca revela">
+      <h1 style="font:italic 700 clamp(1.7rem,3vw,2.4rem)/1.1 var(--serifa)">{info.titulo}</h1>
+      <span class="cabeca-contagem">{itens.length} itens</span>
+    </div>
+    <p class="legenda">{info.legenda}</p>
+    <div class="grade">
+      {itens.map((p, i) => <CartaoProduto produto={p} prioridade={i < 4} />)}
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,20 @@
+---
+import { img } from '../lib/imagens.js';
+
+const logo = img('logo');
+const arte = img('reimu');
+---
+<section class="hero">
+  <div class="hero-miolo">
+    <div class="hero-corpo">
+      <p class="hero-etiqueta">Adesivos de carro ★ Camisetas ★ Decorativos</p>
+      <img class="hero-logo" src={logo.src} width={logo.width} height={logo.height} alt="BOBOYA garage" />
+      <h1>garage merch</h1>
+      <p class="hero-sub">Anime, cultura geek e estética Y2K, em adesivo, camiseta e coisa de casa.</p>
+      <a class="botao" href="/adesivos/">Ver adesivos</a>
+    </div>
+    <div class="hero-arte">
+      <img src={arte.src} width={arte.width} height={arte.height} alt="Reimu Hakurei, estampa 現実核爆弾" />
+    </div>
+  </div>
+</section>

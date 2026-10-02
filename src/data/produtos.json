@@ -1,0 +1,12 @@
+[
+  { "slug": "marisa-camiseta-branca", "nome": "Marisa", "tipo": "Camiseta Branca", "categoria": "camisetas", "preco": 6990, "selo": "novo", "tamanhos": [], "imagens": ["mock_t0"], "specs": null },
+  { "slug": "reimu-camiseta-branca", "nome": "Reimu 現実核爆弾", "tipo": "Camiseta Branca", "categoria": "camisetas", "preco": 6990, "selo": "novo", "tamanhos": [], "imagens": ["mock_t1"], "specs": null },
+  { "slug": "neon-genesis-ep-24", "nome": "Neon Genesis BOBOYA Ep. 24", "tipo": "Camiseta Preta", "categoria": "camisetas", "preco": 7490, "selo": null, "tamanhos": [], "imagens": ["mock_t2"], "specs": null },
+  { "slug": "marisa-pack-adesivos", "nome": "Marisa", "tipo": "Pack de Adesivos", "categoria": "adesivos", "preco": 2290, "selo": null, "tamanhos": [], "imagens": ["mock_a0"], "specs": null },
+  { "slug": "reimu-bumper-sticker", "nome": "Reimu 現実核爆弾", "tipo": "Bumper Sticker", "categoria": "adesivos", "preco": 1990, "selo": "novo", "tamanhos": [], "imagens": ["mock_a1"], "specs": null },
+  { "slug": "colecao-ii-bumper-sticker", "nome": "Coleção II", "tipo": "Bumper Sticker", "categoria": "adesivos", "preco": 1990, "selo": "novo", "tamanhos": [], "imagens": ["mock_a2"], "specs": null },
+  { "slug": "shinji-almofada", "nome": "Shinji", "tipo": "Almofada", "categoria": "decorativos", "preco": 6490, "selo": "destaque", "tamanhos": [], "imagens": ["mock_d0"], "specs": null },
+  { "slug": "nadeko-ima-de-geladeira", "nome": "Nadeko", "tipo": "Ímã de Geladeira", "categoria": "decorativos", "preco": 2490, "selo": "novo", "tamanhos": [], "imagens": ["mock_d1"], "specs": null },
+  { "slug": "shinji-nadeko-chaveiro", "nome": "Shinji + Nadeko", "tipo": "Chaveiro", "categoria": "decorativos", "preco": 2990, "selo": null, "tamanhos": [], "imagens": ["mock_d2"], "specs": null },
+  { "slug": "boboya-chinelo", "nome": "BOBOYA garage", "tipo": "Chinelo", "categoria": "decorativos", "preco": 4990, "selo": "novo", "tamanhos": [], "imagens": ["mock_d3"], "specs": null }
+]

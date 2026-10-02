@@ -1,0 +1,30 @@
+---
+import { img } from '../lib/imagens.js';
+import { CATEGORIAS } from '../lib/catalogo.js';
+
+const logo = img('logo');
+const atual = Astro.url.pathname.split('/').filter(Boolean)[0];
+---
+<header class="topo">
+  <div class="topo-hud" aria-hidden="true">
+    <span><b>●</b> GARAGE ABERTA</span>
+    <span>SÃO PAULO <span data-relogio>--:--:--</span></span>
+  </div>
+  <div class="topo-barra">
+    <a class="topo-logo" href="/" aria-label="BOBOYA garage, página inicial">
+      <img src={logo.src} width={logo.width} height={logo.height} alt="BOBOYA garage" />
+    </a>
+    <nav aria-label="Categorias">
+      <ul class="topo-nav">
+        {Object.entries(CATEGORIAS).map(([slug, c]) => (
+          <li><a href={`/${slug}/`} aria-current={atual === slug ? 'page' : undefined}>{c.titulo}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="topo-fim">
+      <button class="pilula" type="button" data-abrir-gaveta aria-haspopup="dialog">
+        Carrinho (<span data-contador>0</span>)
+      </button>
+    </div>
+  </div>
+</header>

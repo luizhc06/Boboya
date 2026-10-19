@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://boboya.insurge.space/sitemap-index.xml

@@ -33,6 +33,8 @@ const catalogoCliente = produtos.map((p) => ({
     <meta name="description" content={descricao} />
     <meta name="theme-color" content="#161616" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descricao} />
     <meta property="og:type" content="website" />

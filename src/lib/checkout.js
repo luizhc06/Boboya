@@ -9,6 +9,11 @@ export const FRETE_BOBOYA = {
   centavos: 9118337238,
 };
 
+// O salario minimo de 2026 do grupo: R$ 1.621,00. Quantos salarios o pedido
+// custa, arredondado pra cima (ninguem paga frete com 0,3 salario).
+export const SALARIO_MINIMO = 162100;
+export const salariosMinimos = (centavos) => Math.ceil(centavos / SALARIO_MINIMO);
+
 // Resumo do checkout. Carrinho vazio nao tem frete: nao ha o que entregar.
 export function resumoCheckout(carrinho, catalogo) {
   const itens = linhas(carrinho, catalogo);

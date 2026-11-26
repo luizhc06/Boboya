@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { FRETE_BOBOYA, resumoCheckout } from '../src/lib/checkout.js';
+import { FRETE_BOBOYA, resumoCheckout, salariosMinimos } from '../src/lib/checkout.js';
 import { formatarPreco } from '../src/lib/preco.js';
 
 const catalogo = [
@@ -28,5 +28,11 @@ describe('checkout', () => {
   });
   it('carrinho vazio nao tem frete', () => {
     expect(resumoCheckout([], catalogo)).toMatchObject({ subtotal: 0, frete: 0, total: 0 });
+  });
+  it('salarios minimos de R$ 1.621,00, arredondado pra cima', () => {
+    expect(salariosMinimos(FRETE_BOBOYA.centavos)).toBe(56252);
+    expect(salariosMinimos(162100)).toBe(1);
+    expect(salariosMinimos(162101)).toBe(2);
+    expect(Math.floor(162100 / 2490)).toBe(65);
   });
 });

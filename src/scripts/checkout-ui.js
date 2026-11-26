@@ -1,7 +1,7 @@
 // Pagina de checkout: desenha os itens e o resumo a partir do mesmo carrinho da
 // gaveta. A conta mora em src/lib/checkout.js e tem teste; aqui so tem DOM.
 import { carregar } from '../lib/armazenamento.js';
-import { resumoCheckout } from '../lib/checkout.js';
+import { resumoCheckout, salariosMinimos } from '../lib/checkout.js';
 import { formatarPreco } from '../lib/preco.js';
 
 const catalogo = JSON.parse(document.getElementById('catalogo').textContent);
@@ -33,6 +33,7 @@ function desenhar() {
   }));
   document.querySelector('[data-checkout-subtotal]').textContent = formatarPreco(r.subtotal);
   document.querySelector('[data-checkout-total]').textContent = formatarPreco(r.total);
+  document.querySelector('[data-checkout-salarios]').textContent = salariosMinimos(r.total).toLocaleString('pt-BR');
 }
 
 document.querySelector('[data-pagar]').addEventListener('click', () => recusado.showModal());

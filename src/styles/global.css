@@ -280,6 +280,8 @@ body {
 .checkout-resumo dd { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
 .checkout-total { border-top: var(--borda); padding-top: 0.7rem; font-size: 1.05rem; }
 .checkout-total dd { color: var(--vermelho); }
+.checkout-salarios { font: 0.75rem/1.4 var(--mono); color: var(--tinta-2); }
+.checkout-salarios b { color: var(--tinta); }
 .checkout-resumo .botao { width: 100%; text-align: center; }
 @media (max-width: 860px) {
   .checkout-grade { grid-template-columns: 1fr; }

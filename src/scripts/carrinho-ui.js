@@ -1,11 +1,9 @@
 // Liga a logica pura do carrinho ao DOM. Nada de regra de negocio aqui: soma,
 // limite e mensagem moram em src/lib e tem teste. Este arquivo so desenha e
 // escuta cliques, e por isso e testado olhando a loja funcionar.
-import { config } from '../config.js';
 import { carregar, salvar } from '../lib/armazenamento.js';
 import { adicionar, alterarQtd, remover, linhas, totalCentavos, quantidadeTotal } from '../lib/carrinho.js';
 import { formatarPreco } from '../lib/preco.js';
-import { montarMensagem, linkWhatsApp } from '../lib/mensagem.js';
 
 const catalogo = JSON.parse(document.getElementById('catalogo').textContent);
 const gaveta = document.getElementById('gaveta');
@@ -82,6 +80,7 @@ function mudar(novo) {
   carrinho = novo;
   salvar(carrinho);
   desenhar();
+  document.dispatchEvent(new CustomEvent('carrinho:mudou'));
   if (entrouMais) pulsar();
 }
 
@@ -130,13 +129,10 @@ for (const form of document.querySelectorAll('[data-form-produto]')) {
   });
 }
 
-// ── Finalizar ──
+// ── Finalizar: vai para a pagina de checkout (26/11/2026) ──
 finalizar.addEventListener('click', () => {
-  const ls = linhas(carrinho, catalogo);
-  if (ls.length === 0) return;
-  const link = linkWhatsApp(config.whatsapp, montarMensagem(ls, totalCentavos(carrinho, catalogo), config.nome));
-  if (link) window.open(link, '_blank', 'noopener');
-  else aviso.showModal();
+  if (linhas(carrinho, catalogo).length === 0) return;
+  window.location.href = '/checkout/';
 });
 
 // Outra aba mexeu no carrinho: acompanha.

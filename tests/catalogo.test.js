@@ -50,7 +50,7 @@ describe('catalogo', () => {
       'shinji-almofada': 6490,
       'nadeko-ima-de-geladeira': 2490,
       'shinji-nadeko-chaveiro': 2990,
-      'boboya-chinelo': 4990,
+      'boboya-chinelo': 2490,
     };
     for (const [slug, preco] of Object.entries(esperado)) expect(porSlug(slug)?.preco, slug).toBe(preco);
   });

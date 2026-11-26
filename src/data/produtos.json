@@ -8,5 +8,5 @@
   { "slug": "shinji-almofada", "nome": "Shinji", "tipo": "Almofada", "categoria": "decorativos", "preco": 6490, "selo": "destaque", "tamanhos": [], "imagens": ["mock_d0"], "specs": null },
   { "slug": "nadeko-ima-de-geladeira", "nome": "Nadeko", "tipo": "Ímã de Geladeira", "categoria": "decorativos", "preco": 2490, "selo": "novo", "tamanhos": [], "imagens": ["mock_d1"], "specs": null },
   { "slug": "shinji-nadeko-chaveiro", "nome": "Shinji + Nadeko", "tipo": "Chaveiro", "categoria": "decorativos", "preco": 2990, "selo": null, "tamanhos": [], "imagens": ["mock_d2"], "specs": null },
-  { "slug": "boboya-chinelo", "nome": "BOBOYA garage", "tipo": "Chinelo", "categoria": "decorativos", "preco": 4990, "selo": "novo", "tamanhos": [], "imagens": ["mock_d3"], "specs": null }
+  { "slug": "boboya-chinelo", "nome": "BOBOYA garage", "tipo": "Chinelo", "categoria": "decorativos", "preco": 2490, "selo": "novo", "tamanhos": [], "imagens": ["mock_d3"], "specs": null }
 ]

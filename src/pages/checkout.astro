@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { FRETE_BOBOYA } from '../lib/checkout.js';
+import { formatarPreco } from '../lib/preco.js';
+
+const frete = formatarPreco(FRETE_BOBOYA.centavos);
+---
+<Base titulo="Finalizar compra | BOBOYA garage">
+  <div class="secao"><div class="miolo checkout">
+    <div class="cabeca"><h1>Finalizar compra</h1></div>
+
+    <div class="checkout-vazio" data-checkout-vazio hidden>
+      <p>Seu carrinho está vazio.</p>
+      <a class="botao" href="/">Voltar para a loja</a>
+    </div>
+
+    <div class="checkout-grade" data-checkout>
+      <div class="checkout-corpo">
+        <section>
+          <h2 class="checkout-titulo">Seus itens</h2>
+          <ul class="checkout-itens" data-checkout-itens></ul>
+        </section>
+
+        <section>
+          <h2 class="checkout-titulo">Entrega</h2>
+          <fieldset class="frete">
+            <legend class="so-leitor">Escolha o frete</legend>
+            <label class="frete-op">
+              <input type="radio" name="frete" value="boboya" checked />
+              <span class="frete-texto">
+                <b>{FRETE_BOBOYA.nome}</b>
+                <small>{FRETE_BOBOYA.detalhe}</small>
+              </span>
+              <span class="frete-preco">{frete}</span>
+            </label>
+          </fieldset>
+        </section>
+      </div>
+
+      <aside class="checkout-resumo" aria-labelledby="resumo-titulo">
+        <h2 class="checkout-titulo" id="resumo-titulo">Resumo</h2>
+        <dl>
+          <div><dt>Subtotal</dt><dd data-checkout-subtotal>R$ 0,00</dd></div>
+          <div><dt>Frete + ICMS</dt><dd>{frete}</dd></div>
+          <div class="checkout-total"><dt>Total</dt><dd data-checkout-total>R$ 0,00</dd></div>
+        </dl>
+        <button class="botao" type="button" data-pagar>Pagar</button>
+      </aside>
+    </div>
+
+    <dialog id="recusado" class="aviso" aria-labelledby="recusado-titulo">
+      <h2 id="recusado-titulo">Pagamento recusado</h2>
+      <p>O valor passou do limite do seu cartão. E do limite de todos os outros.</p>
+      <form method="dialog"><button class="botao" type="submit">Entendi</button></form>
+    </dialog>
+  </div></div>
+</Base>
+
+<script>
+  import '../scripts/checkout-ui.js';
+</script>
